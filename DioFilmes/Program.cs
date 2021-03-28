@@ -11,11 +11,11 @@ namespace DioFilmes
 
         private static void Main(string[] args)
         {
-            var optionSelected = ObterOpcaoMenu();
+            var entradaOpcaoMenu = ObterOpcaoMenu();
 
-            while (optionSelected != "X")
+            while (entradaOpcaoMenu != "X")
             {
-                switch (optionSelected)
+                switch (entradaOpcaoMenu)
                 {
                     case "1":
                         ListarFilmes();
@@ -40,7 +40,7 @@ namespace DioFilmes
                         break;
                 }
 
-                optionSelected = ObterOpcaoMenu();
+                entradaOpcaoMenu = ObterOpcaoMenu();
             }
         }
 
@@ -49,18 +49,18 @@ namespace DioFilmes
             Console.WriteLine("### Listar filmes ###");
             Console.WriteLine();
 
-            var movies = _repository.Lista();
+            var filmes = _repository.Lista();
 
-            if (movies.Count == 0)
+            if (filmes.Count == 0)
             {
                 Console.WriteLine("Nenhum filme cadastrado!");
                 Console.WriteLine();
                 return;
             }
 
-            foreach (var movie in movies)
+            foreach (var filme in filmes)
             {
-                Console.WriteLine("{0} - {1}{2}", movie.RetornaId(), movie.RetornaTitulo(), movie.RetornaExcluido() ? " *Excluído*" : "");
+                Console.WriteLine("{0} - {1}{2}", filme.RetornaId(), filme.RetornaTitulo(), filme.RetornaExcluido() ? " *Excluído*" : "");
             }
 
             Console.WriteLine();
@@ -192,11 +192,11 @@ namespace DioFilmes
             Console.WriteLine();
             Console.Write("-> ");
 
-            var optionSelected = Console.ReadLine()?.ToUpper();
+            var entradaOpcaoMenu = Console.ReadLine()?.ToUpper();
 
             Console.WriteLine();
 
-            return optionSelected;
+            return entradaOpcaoMenu;
         }
 
         private static int ObterOpcaoGenero()
